@@ -1,0 +1,67 @@
+﻿@model IEnumerable<EMSystemTask.Models.LeaveRequest>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_ManagerLayout.cshtml";
+}
+
+<h1>Leave Requests</h1>
+
+
+<div class=" table-container ">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.StartDate)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.EndDate)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Status)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.RequestDate)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Employee)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.LeaveType)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.StartDate)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.EndDate)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Status)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.RequestDate)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Employee.EmployeeId)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.LeaveType.LeaveTypeName)
+                    </td>
+                    <td>
+                        <a asp-action="Approve" asp-route-id="@item.LeaveRequestId">Approve</a> |
+                        <a asp-action="Pending" asp-route-id="@item.LeaveRequestId">Pending</a> |
+                        <a asp-action="Reject" asp-route-id="@item.LeaveRequestId">Reject</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
